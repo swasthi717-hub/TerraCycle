@@ -21,9 +21,9 @@ File Structure
 11. help.html             (Waste routing guide- vendors by waste type (Delhi NCR))        
 
 Features
-1. Landing Page — Hero section, 3-step how-it-works, community highlights, dashboard 
+1. Landing Page: Hero section, 3-step how-it-works, community highlights, dashboard 
 feature previews 
-2. Auth — Login and signup pages with basic JS validation, routes to dashboard on 
+2. Auth: Login and signup pages with basic JS validation, routes to dashboard on 
 success 
 3. Dashboard: Personalized welcome, quick stats (pickups, kg recycled, CO₂ averted, 
 trees saved, fuel saved), achievements, recent activity, community impact, and smart 
