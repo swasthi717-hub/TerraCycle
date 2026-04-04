@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop</title>
+</head>
+<style>
+  :root {
+  --bg:         #f0f5e4;
+  --white:      #ffffff;
+  --card-bg:    #ffffff;
+  --green-dk:   #1b4d2e;
+  --green-md:   #3a7d44;
+  --green-lt:   #a8c98a;
+  --green-btn:  #8db87e;
+  --green-stat: #c9ddb3;
+  --maroon:     #6b1a1a;
+  --dark-btn:   #3b1f1f;
+  --text:       #1a1a1a;
+  --text-muted: #6b6b6b;
+  --border:     #d8e8c0;
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --shadow:     0 2px 16px rgba(0,0,0,0.07);
+  --font-body:  'DM Sans', sans-serif;
+  --font-display: 'Fraunces', serif;
+}
+.schedule-form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.page-header {
+  text-align: center;
+}
+
+.page-header__brand {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--green-dk);
+  margin-top: 12px;
+}
+
+.page-header__tagline {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Form card */
+.schedule-form-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.schedule-form__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--maroon);
+  margin-bottom: 4px;
+}
+
+/* Form elements */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--maroon);
+}
+
+.form-input {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: #f5f8ef;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: var(--green-md);
+  box-shadow: 0 0 0 3px rgba(58,125,68,0.12);
+  background: #edf8f2;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--green-md);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.form-input__forgot {
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.form-input__forgot a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+
+/* Green schedule button */
+.btn--schedule {
+  background: var(--green-stat);
+  color: var(--text);
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  padding: 18px 40px;
+  font-weight: 600;
+}
+
+/* Dark green submit */
+.btn--submit {
+  width: 100%;
+  background: var(--green-dk);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Light secondary */
+.btn--secondary {
+  width: 100%;
+  background: #ececec;
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.back-btn {
+  align-self: flex start;
+  margin-left: -600px;
+  background: transparent;
+  border: none;
+  color: var(--green-dk);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+</style>
+
+<body>
+        <section class="section schedule-form-section">
+      <div class="page-header">
+        <button class="back-btn" onclick="history.back()">← Back</button>
+        <span class="hero__logo-mark" aria-hidden="true">
+          <span class="mark-square"></span>
+          <span class="mark-circle"></span>
+          <span class="mark-triangle"></span>
+        </span>
+        <h2 class="page-header__brand">TerraCycle</h2>
+        <p class="page-header__tagline">Recycle Smarter. Live Greener. Together.</p>
+      </div>
+      <div class="card schedule-form-card">
+        <h2 class="schedule-form__title">Schedule Bag Drop Off</h2>
+        <div class="form-group">
+          <label class="form-label" for="dropoff-date">Select date:</label>
+          <input class="form-input" type="date" id="dropoff-date" placeholder="dd-mm-yyyy" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dropoff-phone">Phone number:</label>
+          <input class="form-input" type="tel" id="dropoff-phone" placeholder="XXXXXXXXXXX" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dropoff-location">Location</label>
+          <select class="form-input form-select" id="dropoff-location">
+            <option value="">Select...</option>
+            <option>Amsterdam</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="dropoff-timeslot">Time slot:</label>
+          <input class="form-input" type="text" id="dropoff-timeslot" value="10:00 pm - 12:00 pm" />
+        </div>
+        <div class="form-group">
+          <p class="form-label">Choose your waste type:</p>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="waste" value="plastic" checked /> Plastic</label>
+            <label class="radio-label"><input type="radio" name="waste" value="metal" /> Metal</label>
+            <label class="radio-label"><input type="radio" name="waste" value="cardboard" /> Cardboard</label>
+            <label class="radio-label"><input type="radio" name="waste" value="paper" /> Paper waste</label>
+          </div>
+        </div>
+        <button class="btn btn--submit">Submit</button>
+      </div>
+    </section>
+</body>
+</html>
