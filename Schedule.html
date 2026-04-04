@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraCycle — Schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<style>
+
+:root {
+  --bg:           #f0f5e4;
+  --white:        #ffffff;
+  --green-dk:     #1b4d2e;
+  --green-md:     #3a7d44;
+  --green-stat:   #c9ddb3;
+  --green-btn:    #b8d49a;
+  --maroon:       #6b1a1a;
+  --text:         #1a1a1a;
+  --text-muted:   #6b6b6b;
+  --border:       #d8e8c0;
+  --radius-md:    16px;
+  --radius-lg:    24px;
+  --shadow-card:  0 2px 20px rgba(0,0,0,0.07);
+
+
+  /* Button sizing */
+  --btn-width:    540px;
+  --btn-height:   68px;
+}
+body {
+ margin: 0;
+  padding: 0;
+  background-color: #F6FCEB;
+  color: #003306;
+font-family: 'Inter', sans-serif; overflow-x: hidden;
+} 
+
+nav{background-color: #B5C9A7;
+  height: 64px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-left: 5vw;padding-right: 5vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+ 
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: fadeDown 0.6s ease forwards;
+}
+ 
+.logo{font-size: 20px;
+  font-weight: bold;
+color: #540000;
+}
+ 
+.nav-links{
+  list-style: none;display: flex;
+  flex: 1;
+  justify-content: space-between;margin-left: 180px;
+  padding: 0 5vw 0 0;
+}
+ 
+.nav-links li{list-style: none;
+}
+ 
+.nav-links li a {
+  text-decoration: none;color: #003306;
+font-weight: 600;
+  font-size: 18px;
+}
+ 
+.nav-links li a:hover {color: #540000;
+}
+
+.schedule-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Base button */
+.schedule-btn {
+  width: var(--btn-width);
+  min-height: var(--btn-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: var(--green-stat);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 18px 32px;
+
+  box-shadow: var(--shadow-card);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.schedule-btn:hover {
+  background: #b5d19a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.11);
+}
+
+.schedule-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-card);
+}
+
+/* Icon inside first two buttons */
+.schedule-btn__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* Third button — two-line text block */
+.schedule-btn--next {
+  flex-direction: column;
+  gap: 4px;
+  min-height: 80px;
+}
+
+.schedule-btn__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.schedule-btn__text strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.schedule-btn__text span {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+@media (max-width: 600px) {
+  .nav-links {
+    gap: 20px;
+  }
+ 
+  .btn-group {
+    flex-direction: column;
+  }
+ 
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+<body>
+ <nav>
+    <div class="logo">TerraCycle®</div>
+    <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="#">Community & Challenges</a></li>
+    </ul>
+</nav>
+   <br/>
+   <br/>
+   <br/>
+    <!-- CTA Buttons — one per line, centred -->
+    <section class="schedule-actions">
+ 
+      <button class="schedule-btn" onclick="window.location='dropped.html'">
+        <span class="schedule-btn__icon">📦</span>
+        Schedule Bag-Dropoff
+      </button>
+ 
+      <button class="schedule-btn" onclick="window.location='pickup.html'">
+        <span class="schedule-btn__icon">🚛</span>
+        Schedule Bag-Pickup
+      </button>
+ 
+      <button class="schedule-btn schedule-btn--next" onclick="window.location='help.html'">
+        <span class="schedule-btn__text">
+          <strong>Next Step for Your Collected Waste :</strong>
+          <span>Click here to choose where is your waste going or will go !</span>
+        </span>
+      </button>
+ 
+    </section>
+ 
+  </main>
+ 
+</body>
+</html>
