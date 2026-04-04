@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraCycle</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+ margin: 0;
+  padding: 0;
+  background-color: #F6FCEB;
+  color: #003306;
+font-family: 'Inter', sans-serif; overflow-x: hidden;
+}
+  
+nav{background-color: #B5C9A7;
+  height: 64px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-left: 5vw;padding-right: 5vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+ 
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: fadeDown 0.6s ease forwards;
+}
+ 
+.logo{font-size: 20px;
+  font-weight: bold;
+color: #540000;
+}
+ 
+.nav-links{
+  list-style: none;display: flex;
+  flex: 1;
+  justify-content: space-between;margin-left: 180px;
+  padding: 0 5vw 0 0;
+}
+ 
+.nav-links li{list-style: none;
+}
+ 
+.nav-links li a {
+  text-decoration: none;
+  color: #003306;
+font-weight: 600;
+  font-size: 18px;
+}
+ 
+.nav-links li a:hover {color: #540000;
+}
+ 
+.hero {
+  min-height: 60vh;             
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;   
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+ 
+.shapes {
+  display: flex;gap: 6px;margin-bottom: 30px;opacity: 0;
+animation: fadeUp 0.6s ease forwards;
+padding-top: 50px;
+}
+ 
+.sq{width: 18px;height: 18px;background-color: #540000;}
+ 
+.circ {
+  width: 16px;
+  height: 16px;
+  background-color: #540000;
+  border-radius: 50%;
+}
+ 
+.tri {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 18px solid #540000;
+}
+ 
+h1{
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.sub {
+  margin-top: 12px;
+  max-width: 600px;font-size: 18px;
+  font-weight: 520;color: #005E03;
+  opacity: 0;animation: fadeUp 0.7s ease forwards;
+}
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn--dark {
+  background: #540000;
+  color: white;
+}
+.btn,
+.btn:visited,
+.btn:hover,
+.btn:active {
+  text-decoration: none;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.quick-stat {
+  background: #B5C9A7;
+  border-radius: 16px;
+  padding: 22px 28px;              
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.02rem;              
+  min-width: 100px;
+  flex: 1;
+  max-width: 165px;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;  
+}
+
+.quick-stat:hover {
+  transform: translateY(-6px) scale(1.05);  
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.quick-stat__icon {
+  font-size: 1.6rem;              
+}
+
+.dashboard-section {
+  display: flex;
+  gap: 24px;
+  padding: 40px 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #ffffff;                     
+  border-radius: 20px;
+  padding: 28px;
+  width: 480px;
+  max-width: 100%;
+  border: 1px solid #e5e5e5;              
+}
+
+.card-title {
+  color: #540000;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+}
+
+/* ACHIEVEMENTS */
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 26px;
+  color: #1b5e20;                         
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1b5e20;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #8a8a8a;                         
+  margin-top: 2px;
+}
+
+/* RECENT ACTIVITY */
+.activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.points {
+  text-align: right;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+
+.mini-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin:30px 0;
+  text-align: center;
+  padding-bottom: 30px;
+  
+}
+
+.mini-stat i {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.mini-stat p {
+  font-size: 19px;
+  font-weight: 600;
+  color: #540000;
+    padding-bottom: 30px;
+
+}
+
+/* colors */
+.icon-green {
+  color: #1b8f2f;
+  padding-bottom: 0.2px;
+}
+
+.icon-purple {
+  color: #6a2dbd;
+}
+/*COLLECTION*/
+
+.impact-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+
+  width: 100%;
+  max-width: 1050px;     
+  margin: 0 auto;        
+  border: 1px solid #e5e5e5;
+}
+
+.impact-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b4d2e;
+  text-align: center;
+  margin-bottom: 36px;
+  width: 100%;
+  max-width: none;   
+}
+
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.impact-stat__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.6rem;
+}
+
+.impact-stat__icon-wrap--green  { background: #e4f5e8; }
+.impact-stat__icon-wrap--blue   { background: #e4eef5; }
+.impact-stat__icon-wrap--green2 { background: #d8f0e4; }
+.impact-stat__icon-wrap--yellow { background: #f5f5e0; }
+
+.impact-stat__value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #6b1a1a;
+  margin-bottom: 6px;
+}
+
+.impact-stat:nth-child(3) .impact-stat__value { color: #6b1a1a; }
+.impact-stat:nth-child(4) .impact-stat__value { color: #6b1a1a; }
+
+.impact-stat__label {
+  font-size: 0.82rem;
+  color: #6b6b6b;
+}
+.impact-stat__icon-wrap i {
+  font-size: 22px;
+  color: #1b4d2e;
+}
+
+.segregation {
+  padding-top: 0;
+  
+}
+.segregation-card{
+      background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+
+  width: 100%;
+  max-width: 1050px;     
+  margin: 0 auto;        
+  border: 1px solid #e5e5e5;
+    padding-top: 20PX;
+
+
+}
+
+.segregation-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b4d2e;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.waste-types {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+
+.waste-type {
+  border: 1.5px solid #d8e8c0;
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.waste-type:hover {
+  border-color: #6b1a1a;
+  box-shadow: 0 0 0 3px rgba(58,125,68,0.12);
+}
+
+.waste-type--active {
+  border-color: #6b1a1a;
+  box-shadow: 0 0 0 3px rgba(58,125,68,0.15);
+}
+
+.waste-type__icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #f5f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 1.5rem;
+}
+
+.waste-type--paper .waste-type__icon-wrap   { background: #f0ede4; }
+.waste-type--plastic .waste-type__icon-wrap { background: #ede8f5; }
+.waste-type--metal .waste-type__icon-wrap   { background: #f5f0e4; }
+.waste-type--cardboard .waste-type__icon-wrap { background: #f5ece4; }
+.waste-type--ewaste .waste-type__icon-wrap  { background: #eaf5e4; }
+
+.waste-type__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #6b1a1a;
+  margin-bottom: 10px;
+}
+
+
+
+.waste-type__list {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+  text-align: left;
+  display: inline-block;
+  line-height: 1.8;
+}
+.segregation-card__cta {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  margin-top: 12px;
+}
+
+.link--green {
+  color: #3a7d44;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #f6fceb;
+  color: #a0a090;
+  margin-top: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-section h4 {
+  color: #540000;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #a0a090;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #540000;
+}
+
+.footer-right {
+  display: flex;
+  gap: 120px;
+}
+
+/* SOCIAL ICONS */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  height: 38px;
+  width: 38px;
+  background: #003306;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.social-icons a:hover {
+  background: #5a4bff;
+  transform: translateY(-3px);
+}
+
+
+.feed-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 25px 40px;
+}
+
+.feed-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #300700;
+  margin-bottom: 40px;
+    padding-left: 60PX;
+
+}
+
+.feed-item {
+  display: flex;
+  gap: 130px;
+  align-items: flex-start;
+}
+
+.feed-left {
+  flex: 0 0 400px;
+}
+
+.feed-post-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a4d1a;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+  padding-left: 70PX;
+}
+
+.feed-date {
+  color: #a0a090;
+  font-size: 0.95rem;
+  margin: 0;
+    padding-left: 73PX;
+
+}
+
+.feed-right {
+  flex: 1;
+}
+
+.feed-img {
+  width: 70%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  max-height: 300px;
+}
+
+.feed-desc {
+  font-size: 0.97rem;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin-bottom: 16px;
+      padding-RIGHT: 70px;
+
+}
+
+.feed-subheading {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+    padding-RIGHT: 50px;
+
+}
+
+.feed-list {
+  padding-left: 30px;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  font-size: 0.97rem;
+  line-height: 1.4;
+}
+
+/* FOOTER BOTTOM */
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  color: #540000;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+<body>
+<nav>
+    <div class="logo">TerraCycle®</div>
+    <ul class="nav-links">
+    <li><a href="landing page.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="community.html">Community & Challenges</a></li>
+    </ul>
+</nav>
+ 
+<div class="hero">
+    <div class="shapes">
+    <div class="sq"></div>
+    <div class="circ"></div>
+    <div class="tri"></div>
+    </div>
+
+    <h1>Welcome, Swasthi!</h1>
+    <div class="sub">
+    Here's your impact—track, celebrate, keep growing.
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="hero__actions">
+        <a href="feed.html" class="btn btn--dark">See Your Feed</a>
+        <a href="redeem.html" class="btn btn--dark">Redeem TerraCredits</a>
+        <a href="schedule.html" class="btn btn--dark">Schedule Waste Collection</a>
+    </div>
+    <br/>
+    <div class="quick-stats">
+        <div class="quick-stat">
+<span class="quick-stat__icon"><i class="fa-solid fa-truck"></i></span>
+          <span class="quick-stat__label">17 Pickups</span>
+        </div>
+        <div class="quick-stat">
+<span class="quick-stat__icon"><i class="fa-solid fa-recycle"></i></span>          <span class="quick-stat__label">210 Kg Waste</span>
+        </div>
+        <div class="quick-stat">
+<span class="quick-stat__icon"><i class="fa-solid fa-cloud"></i></span>          <span class="quick-stat__label">90 Kg of CO2 Averted</span>
+        </div>
+        <div class="quick-stat">
+<span class="quick-stat__icon"><i class="fa-solid fa-leaf"></i></span>
+          <span class="quick-stat__label">1.5 Trees Saved</span>
+        </div>
+        <div class="quick-stat">
+<span class="quick-stat__icon"><i class="fa-solid fa-gas-pump"></i></span>
+          <span class="quick-stat__label">133L of Fuel Saved</span>
+        </div>
+    </div>
+</div>
+
+    <br/>
+    <br/>  
+  
+<section class="dashboard-section">
+
+    <!-- ACHIEVEMENTS -->
+    <div class="card">
+    <h2 class="card-title">ACHIEVEMENTS</h2>
+
+    <div class="achievement">
+<span class="icon"><i class="fa-solid fa-tree"></i></span>
+     <div>
+        <div class="title">Eco Challenger</div>
+        <div class="subtitle">Start 5 challenges</div>
+      </div>
+    </div>
+
+    <div class="achievement">
+<span class="icon"><i class="fa-solid fa-recycle"></i></span>
+    <div>
+        <div class="title">Recycle pro</div>
+        <div class="subtitle">Recycle 100kg of trash</div>
+      </div>
+    </div>
+
+    <div class="achievement">
+<span class="icon"><i class="fa-solid fa-trophy"></i></span>         <div>
+        <div class="title">Green Citizen</div>
+        <div class="subtitle">Participate in first drive</div>
+      </div>
+    </div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="card">
+    <h2 class="card-title">RECENT ACTIVITY</h2>
+
+    <div class="activity">
+      <div>
+        <div class="title">Waste Recycling</div>
+        <div class="subtitle">11 November, 2025</div>
+      </div>
+      <div class="points">+5 Kg<br>50 Credits</div>
+    </div>
+
+    <div class="activity">
+      <div>
+        <div class="title">Clean beach drive</div>
+        <div class="subtitle">20 October, 2025</div>
+      </div>
+      <div class="points">+3 Kg<br>30 Credits</div>
+    </div>
+
+    <div class="activity">
+      <div>
+        <div class="title">Started plastic detox challenge</div>
+        <div class="subtitle">11 October, 2025</div>
+      </div>
+      <div class="points">40 Credits</div>
+    </div>
+    </div>
+</section>
+
+    <br/>
+
+    <div class="mini-stats">
+  
+  <div class="mini-stat">
+    <i class="fa-solid fa-calendar-check "></i>
+    <p>Last Pickup: 5 days ago</p>
+  </div>
+
+  <div class="mini-stat">
+    <i class="fa-solid fa-clock "></i>
+    <p>Streak: 6 weeks</p>
+  </div>
+
+</div>
+
+<!-- ---- COLLECTIVE ENVIRONMENTAL IMPACT ---- -->    
+    <section class="section impact">
+  <div class="impact-card">
+    <h2 class="impact-card__title">Your Community's Environmental Impact</h2>
+
+    <div class="impact-stats">
+
+      <div class="impact-stat">
+        <div class="impact-stat__icon-wrap impact-stat__icon-wrap--green">
+          <i class="fa-solid fa-seedling"></i>
+        </div>
+        <p class="impact-stat__value">47,230 kg</p>
+        <p class="impact-stat__label">Plastics Saved from Landfills</p>
+      </div>
+
+      <div class="impact-stat">
+        <div class="impact-stat__icon-wrap impact-stat__icon-wrap--blue">
+          <i class="fa-solid fa-cloud"></i>
+        </div>
+        <p class="impact-stat__value">8,560 Tons</p>
+        <p class="impact-stat__label">CO₂ Emissions Reduced</p>
+      </div>
+
+      <div class="impact-stat">
+        <div class="impact-stat__icon-wrap impact-stat__icon-wrap--green2">
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <p class="impact-stat__value">12,400</p>
+        <p class="impact-stat__label">Trees Worth of Impact</p>
+      </div>
+
+      <div class="impact-stat">
+        <div class="impact-stat__icon-wrap impact-stat__icon-wrap--yellow">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <p class="impact-stat__value">E-Waste</p>
+        <p class="impact-stat__label">Active Community Members</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <br/>
+    <br/>
+
+<!-- ---- SMART WASTE SEGREGATION ---- -->
+    <section class="section segregation">
+      <div class="card segregation-card">
+        <h2 class="segregation-card__title">Smart Waste Segregation</h2>
+        <div class="waste-types">
+
+          <div class="waste-type waste-type--paper">
+            <div class="waste-type__icon-wrap">
+              <i class="fa-solid fa-file"></i>
+            </div>
+            <h3 class="waste-type__name">Paper</h3>
+            <ul class="waste-type__list">
+              <li>Magazines</li>
+              <li>Office Paper</li>
+              <li>Newspapers</li>
+              <li>Old Books</li>
+            </ul>
+          </div>
+
+          <div class="waste-type waste-type--plastic">
+            <div class="waste-type__icon-wrap">
+          <i class="fa-solid fa-bottle-water"></i>
+            </div>
+            <h3 class="waste-type__name">Plastic</h3>
+            <ul class="waste-type__list">
+              <li>Bottles</li>
+              <li>Containers</li>
+              <li>Bags</li>
+              <li>Packaging</li>
+            </ul>
+          </div>
+
+          <div class="waste-type waste-type--metal ">
+            <div class="waste-type__icon-wrap">
+              <i class="fa-solid fa-cube"></i>
+            </div>
+            <h3 class="waste-type__name">Metal</h3>
+            <ul class="waste-type__list">
+              <li>Aluminum Cans</li>
+              <li>Steel Cans</li>
+              <li>Foil</li>
+              <li>Metal Container</li>
+            </ul>
+          </div>
+
+          <div class="waste-type waste-type--cardboard">
+            <div class="waste-type__icon-wrap">
+          <i class="fa-solid fa-box"></i>
+            </div>
+            <h3 class="waste-type__name">Cardboard</h3>
+            <ul class="waste-type__list">
+              <li>Shipping Boxes</li>
+              <li>Cereal Boxes</li>
+              <li>Cartons</li>
+              <li>Packaging</li>
+            </ul>
+          </div>
+
+          <div class="waste-type waste-type--ewaste">
+            <div class="waste-type__icon-wrap">
+<i class="fa-solid fa-desktop"></i>            </div>
+            <h3 class="waste-type__name">E-Waste</h3>
+            <ul class="waste-type__list">
+              <li>Phones</li>
+              <li>Laptops</li>
+              <li>Batteries</li>
+              <li>Cables</li>
+            </ul>
+          </div>
+
+        </div>
+        <p class="segregation-card__cta">
+          <strong>Need More Help with Segregation?</strong><br />
+          Let us help you out, <a href="help.html" class="link--green">Click Here</a>
+        </p>
+      </div>
+    </section>
+<br/>
+<br/>
+
+
+<section class="feed-section">
+  <h2 class="feed-title">Lastest from your feed</h2>
+
+  <div class="feed-item">
+    <div class="feed-left">
+      <h3 class="feed-post-title">How to Upcycle Old Tshirts into Tote Bags?</h3>
+      <p class="feed-date">Oct 10, 2025</p>
+    </div>
+
+    <div class="feed-right">
+      <img src="https://i.pinimg.com/736x/81/3c/d9/813cd990376dd73735fe7aacc4b930c5.jpg" alt="T-Shirt Tote Bag" class="feed-img" />
+      <p class="feed-desc">
+        Our fav TerraCycler Malik Thompson demonstrates how to transform worn-out t-shirts into durable, eco-friendly tote bags-no sewing machine required!
+      </p>
+      <p class="feed-subheading">Why Upcycle?</p>
+      <ul class="feed-list">
+        <li>Saves textiles from landfill</li>
+        <li>Reduces need for single-use bags</li>
+        <li>Creative way to personalize your accessories</li>
+      </ul>
+      <p class="feed-desc">
+        This video guides you from cutting to crafting for quick results, perfect for crafters of any skill level!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <div class="shapes" style="opacity:1; padding-top:0; margin-bottom:0;">
+        <div class="sq" style="background-color:#c8c0b0;"></div>
+        <div class="circ" style="background-color:#c8c0b0;"></div>
+        <div class="tri" style="border-bottom-color:#c8c0b0;"></div>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">How TerraCycle Works</a></li>
+          <li><a href="#">Meet the Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Join Events</a></li>
+          <li><a href="#">View Challenges</a></li>
+          <li><a href="#">Start Recycling</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
