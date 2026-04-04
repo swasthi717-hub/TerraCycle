@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraCycle – Community & Challenges</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: #F6FCEB;
+  color: #003306;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+nav {
+  background-color: #B5C9A7;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-16px);
+  animation: fadeDown 0.6s ease forwards;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #540000;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin-left: 180px;
+  padding: 0 5vw 0 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #003306;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.nav-links li a:hover { color: #540000; }
+
+/* HERO */
+.hero {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 50px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 120px;
+    padding-top: 90px;
+
+}
+
+.shapes {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.1s forwards;
+}
+
+.sq  { width: 18px; height: 18px; background-color: #540000; }
+.circ { width: 16px; height: 16px; background-color: #540000; border-radius: 50%; }
+.tri { width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 18px solid #540000; }
+
+.hero h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #003306;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.2s forwards;
+}
+
+.hero p {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d7a2d;
+  max-width: 700px;
+  line-height: 1.3;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.3s forwards;
+}
+
+.btn-group {
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.4s forwards;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s, opacity 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn--dark { background-color: #540000; color: white; }
+.btn--outline { background: transparent; border: 2px solid #540000; color: #540000; }
+
+/* CATEGORY CARDS */
+.categories {
+  padding: 20px 5vw 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.5s forwards;
+}
+
+.cat-card {
+  background-color: #B5C9A7;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+}
+
+.cat-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.cat-card__label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #540000;
+  margin-bottom: 6px;
+}
+
+.cat-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #003306;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #f6fceb;
+  color: #a0a090;
+  margin-top: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-section h4 {
+  color: #540000;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #a0a090;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #540000;
+}
+
+.footer-right {
+  display: flex;
+  gap: 120px;
+}
+
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">TerraCycle®</div>
+  <ul class="nav-links">
+    <li><a href="landing page.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="#">Community & Challenges</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="shapes">
+    <div class="sq"></div>
+    <div class="circ"></div>
+    <div class="tri"></div>
+  </div>
+  <h1>Share. Connect. Grow.</h1>
+  <p>Real stories, ideas & support from everyday Eco Champions.</p>
+  <div class="btn-group">
+    <a href="feed.html" class="btn btn--dark">See your Feed</a>
+    <a href="#" class="btn btn--dark">Join the Community</a>
+  </div>
+</div>
+
+<!-- CATEGORY CARDS -->
+<div class="categories">
+
+  <div class="cat-card">
+    <img src="https://i.pinimg.com/736x/ab/8a/52/ab8a522085a4885adda8ab4739e7fe58.jpg" alt="Recipes" />
+    <div class="cat-card__label">Recipes</div>
+    <div class="cat-card__title">Tasty, Low-Waste Meals</div>
+  </div>
+
+  <div class="cat-card">
+    <img src="https://i.pinimg.com/736x/eb/f3/49/ebf349349dfcb19457f04fe30dfcd5d3.jpg" alt="Local Meetups" />
+    <div class="cat-card__label">Local Meetups</div>
+    <div class="cat-card__title">Find Your Eco Crew</div>
+  </div>
+
+  <div class="cat-card">
+    <img src="https://i.pinimg.com/736x/95/8c/73/958c73188e48bf386f152f37625cb231.jpg" alt="Upcycling" />
+    <div class="cat-card__label">Upcycling</div>
+    <div class="cat-card__title">Easy DIY for All</div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <div class="shapes" style="opacity:1; padding-top:0; margin-bottom:0;">
+        <div class="sq" style="background-color:#c8c0b0;"></div>
+        <div class="circ" style="background-color:#c8c0b0;"></div>
+        <div class="tri" style="border-bottom-color:#c8c0b0;"></div>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">How TerraCycle Works</a></li>
+          <li><a href="#">Meet the Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Join Events</a></li>
+          <li><a href="#">View Challenges</a></li>
+          <li><a href="#">Start Recycling</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
