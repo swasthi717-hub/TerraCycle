@@ -8,9 +8,9 @@ or drop-offs, earn TerraCredits for every kilogram recycled, track their persona
 impact, and connect with a local sustainability community.
 
 File Structure 
-1.  landing page.html     (Marketing/home page) 
-2.  login page.html       (Login with email + password) 
-3. signup page.html       (Create a new account) 
+1.  index.html     (Marketing/home page) 
+2.  login.html       (Login with email + password) 
+3. signup.html       (Create a new account) 
 4. dashboard.html         (User dashboard- stats, achievements, activity feed) 
 5. community.html         (Community & Challenges- recipes, meetups, upcycling) 
 6. feed.html              (Eco content feed- blogs and upcycling tutorials)         
@@ -21,7 +21,7 @@ File Structure
 11. help.html             (Waste routing guide- vendors by waste type (Delhi NCR))        
 
 Features
-1. Landing Page: Hero section, 3-step how-it-works, community highlights, dashboard 
+1. Index: Hero section, 3-step how-it-works, community highlights, dashboard 
 feature previews 
 2. Auth: Login and signup pages with basic JS validation, routes to dashboard on 
 success 
